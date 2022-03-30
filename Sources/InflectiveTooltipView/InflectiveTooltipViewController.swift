@@ -11,7 +11,7 @@ final public class InflectiveTooltipViewController: UIViewController {
     private let screenSize = UIScreen.main.bounds
     private let triangleShape = CAShapeLayer()
         
-    @IBOutlet private weak var backgroundView: UIView!
+    private var backgroundView = UIView()
     private let dialogBackgroundView = UIView()
     
     private var minTopInset: CGFloat {
@@ -36,9 +36,7 @@ final public class InflectiveTooltipViewController: UIViewController {
     
     public required init(params: InflectiveTooltipParams) {
         self.params = params
-        
-        let nibName = String(describing: InflectiveTooltipViewController.self)
-        super.init(nibName: nibName, bundle: nil)
+        super.init()
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
@@ -58,23 +56,25 @@ final public class InflectiveTooltipViewController: UIViewController {
         dialogBackgroundView.layer.cornerRadius = params.cornerRadius
         backgroundView.alpha = params.globalBackgroundAlpha
         dialogBackgroundView.clipsToBounds = true
+        backgroundView.frame = UIScreen.main.bounds
     }
     
     private func fillViews() {
-        let view = params.tooltipView
-        view.layoutSubviews()
-        let dialogBackgroundViewHeight = view.frame.height
+        let tooltipView = params.tooltipView
+        tooltipView.layoutSubviews()
+        let dialogBackgroundViewHeight = tooltipView.frame.height
         let maxDialogViewHeight = screenSize.height - minTopInset - minBottomInset
         let dialogViewHeight: CGFloat = min(maxDialogViewHeight, dialogBackgroundViewHeight)
         let dialogViewSize = CGSize(width: params.width, height: dialogViewHeight)
         dialogBackgroundView.frame = CGRect(origin: getDialogViewOrign(for: dialogViewSize),
                                             size: dialogViewSize)
-        view.frame = CGRect(x: dialogBackgroundView.frame.minX + params.tooltipViewInset,
-                            y: dialogBackgroundView.frame.minY + params.tooltipViewInset,
-                            width: dialogBackgroundView.frame.width - params.tooltipViewInset * 2,
-                            height: dialogBackgroundView.frame.height - params.tooltipViewInset * 2)
+        tooltipView.frame = CGRect(x: dialogBackgroundView.frame.minX + params.tooltipViewInset,
+                                   y: dialogBackgroundView.frame.minY + params.tooltipViewInset,
+                                   width: dialogBackgroundView.frame.width - params.tooltipViewInset * 2,
+                                   height: dialogBackgroundView.frame.height - params.tooltipViewInset * 2)
+        view.addSubview(backgroundView)
         view.addSubview(dialogBackgroundView)
-        view.addSubview(view)
+        view.addSubview(tooltipView)
     }
     
     private func getDialogViewOrign(for size: CGSize) -> CGPoint {
