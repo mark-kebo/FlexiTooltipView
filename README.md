@@ -1,3 +1,3 @@
 # InflectiveTooltipView
 
-A description of this package.
+Package for custom tooltips in your application
