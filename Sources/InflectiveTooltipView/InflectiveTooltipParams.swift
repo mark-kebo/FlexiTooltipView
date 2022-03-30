@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct InflectiveTooltipParams {
+public struct InflectiveTooltipParams {
     let tooltipView: UIView
     let pointingViewGlobalFrame: CGRect
     let isPointingViewSelected: Bool = false

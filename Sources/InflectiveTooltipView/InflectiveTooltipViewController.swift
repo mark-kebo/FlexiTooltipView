@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InflectiveTooltipViewController: UIViewController {
+final public class InflectiveTooltipViewController: UIViewController {
     private let screenSize = UIScreen.main.bounds
     private let triangleShape = CAShapeLayer()
         
