@@ -34,7 +34,7 @@ final public class InflectiveTooltipViewController: UIViewController {
     
     private let params: InflectiveTooltipParams
     
-    required init(params: InflectiveTooltipParams) {
+    public required init(params: InflectiveTooltipParams) {
         self.params = params
         
         let bundle = Bundle(for: Self.self)
