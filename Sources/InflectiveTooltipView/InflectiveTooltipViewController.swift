@@ -37,9 +37,8 @@ final public class InflectiveTooltipViewController: UIViewController {
     public required init(params: InflectiveTooltipParams) {
         self.params = params
         
-        let bundle = Bundle(for: Self.self)
-        let nibName = (String(describing: type(of: self)) as NSString).components(separatedBy: ".").first ?? ""
-        super.init(nibName: nibName, bundle: bundle)
+        let nibName = String(describing: self)
+        super.init(nibName: nibName, bundle: nil)
         self.modalPresentationStyle = .overFullScreen
         self.modalTransitionStyle = .crossDissolve
     }
