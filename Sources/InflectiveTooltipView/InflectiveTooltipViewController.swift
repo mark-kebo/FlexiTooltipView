@@ -48,7 +48,7 @@ final public class InflectiveTooltipViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         prepareViews()
         fillViews()
