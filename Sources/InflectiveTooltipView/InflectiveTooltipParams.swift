@@ -10,14 +10,14 @@ import UIKit
 public struct InflectiveTooltipParams {
     let tooltipView: UIView
     let pointingViewGlobalFrame: CGRect
-    let isPointingViewSelected: Bool = false
-    let width: CGFloat = 235
-    let backgroundColor: UIColor = .white
-    let arrowHeight: CGFloat = 8
-    let cornerRadius: CGFloat = 8
-    let isNeedShadow: Bool = false
-    let globalBackgroundAlpha: CGFloat = 0.3
-    let tooltipViewInset: CGFloat = 14
+    let isPointingViewSelected: Bool 
+    let width: CGFloat
+    let backgroundColor: UIColor
+    let arrowHeight: CGFloat
+    let cornerRadius: CGFloat
+    let isNeedShadow: Bool
+    let globalBackgroundAlpha: CGFloat
+    let tooltipViewInset: CGFloat
     
     public init(tooltipView: UIView,
                 pointingViewGlobalFrame: CGRect,
