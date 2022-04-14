@@ -8,15 +8,26 @@
 import UIKit
 
 public struct InflectiveTooltipConfiguration {
-    var backgroundColor: UIColor = .white
-    var arrowHeight: CGFloat = 8
-    var cornerRadius: CGFloat = 8
-    var isNeedShadow: Bool = false
-    var globalBackgroundAlpha: CGFloat = 0.3
-    var tooltipViewInset: CGFloat = 16
-    var isTooltipClosable: Bool = false
-    var highlightedViews: [UIView] = []
+    var backgroundColor: UIColor
+    var arrowHeight: CGFloat
+    var cornerRadius: CGFloat
+    var isNeedShadow: Bool
+    var globalBackgroundAlpha: CGFloat
+    var tooltipViewInset: CGFloat
+    var isTooltipClosable: Bool
+    var highlightedViews: [UIView]
     var topAction: InflectiveTooltipActionItem?
+    
+    public init() {
+        backgroundColor = .white
+        arrowHeight = 8
+        cornerRadius = 8
+        isNeedShadow = false
+        globalBackgroundAlpha = 0.3
+        tooltipViewInset = 16
+        isTooltipClosable = false
+        highlightedViews = []
+    }
 }
 
 public struct InflectiveTooltipParams {
@@ -74,8 +85,8 @@ public struct InflectiveTooltipTextItem: InflectiveTooltipItemProtocol {
     public var type: InflectiveTooltipItemType { .text }
     public let text: NSAttributedString
     public let image: UIImage?
-    public let imageSize: CGFloat = 20
-    public let spacing: CGFloat = 16
+    public let imageSize: CGFloat
+    public let spacing: CGFloat
     public var contentWidth: CGFloat {
         var width = text.size().width + spacing * 2
         if image != nil {
@@ -83,15 +94,33 @@ public struct InflectiveTooltipTextItem: InflectiveTooltipItemProtocol {
         }
         return width
     }
+    
+    public init(text: NSAttributedString,
+                image: UIImage?,
+                imageSize: CGFloat = 20,
+                spacing: CGFloat = 16) {
+        self.text = text
+        self.image = image
+        self.imageSize = imageSize
+        self.spacing = spacing
+    }
 }
 
 public struct InflectiveTooltipImageItem: InflectiveTooltipItemProtocol {
     public var type: InflectiveTooltipItemType { .image }
     public let image: UIImage?
     public let imageSize: CGSize
-    public let spacing: CGFloat = 16
+    public let spacing: CGFloat
     public var contentWidth: CGFloat {
         imageSize.width + spacing * 2
+    }
+    
+    public init(image: UIImage?,
+                imageSize: CGSize,
+                spacing: CGFloat = 16) {
+        self.image = image
+        self.imageSize = imageSize
+        self.spacing = spacing
     }
 }
 
@@ -100,13 +129,23 @@ public struct InflectiveTooltipActionsItem: InflectiveTooltipItemProtocol {
     public let firstAction: InflectiveTooltipActionItem
     public let secondAction: InflectiveTooltipActionItem?
     public let alignment: InflectiveTooltipActionsAlignment
-    public let spacing: CGFloat = 16
+    public let spacing: CGFloat
     public var contentWidth: CGFloat {
         var width = firstAction.contentWidth + (secondAction?.contentWidth ?? 0) + spacing * 2
         if (secondAction?.contentWidth ?? 0) > 0 {
             width += spacing
         }
         return width
+    }
+    
+    public init(firstAction: InflectiveTooltipActionItem,
+                secondAction: InflectiveTooltipActionItem?,
+                alignment: InflectiveTooltipActionsAlignment,
+                spacing: CGFloat = 16) {
+        self.firstAction = firstAction
+        self.secondAction = secondAction
+        self.alignment = alignment
+        self.spacing = spacing
     }
 }
 
