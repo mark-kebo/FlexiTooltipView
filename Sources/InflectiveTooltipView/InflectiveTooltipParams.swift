@@ -8,15 +8,15 @@
 import UIKit
 
 public struct InflectiveTooltipConfiguration {
-    var backgroundColor: UIColor
-    var arrowHeight: CGFloat
-    var cornerRadius: CGFloat
-    var isNeedShadow: Bool
-    var globalBackgroundAlpha: CGFloat
-    var tooltipViewInset: CGFloat
-    var isTooltipClosable: Bool
-    var highlightedViews: [UIView]
-    var topAction: InflectiveTooltipActionItem?
+    public var backgroundColor: UIColor
+    public var arrowHeight: CGFloat
+    public var cornerRadius: CGFloat
+    public var isNeedShadow: Bool
+    public var globalBackgroundAlpha: CGFloat
+    public var tooltipViewInset: CGFloat
+    public var isTooltipClosable: Bool
+    public var highlightedViews: [UIView]
+    public var topAction: InflectiveTooltipActionItem?
     
     public init() {
         backgroundColor = .white
@@ -31,11 +31,11 @@ public struct InflectiveTooltipConfiguration {
 }
 
 public struct InflectiveTooltipParams {
-    let tooltipItems: [InflectiveTooltipItemProtocol]
-    let pointingView: UIView
-    let configuration: InflectiveTooltipConfiguration
+    public let tooltipItems: [InflectiveTooltipItemProtocol]
+    public let pointingView: UIView
+    public let configuration: InflectiveTooltipConfiguration
     
-    var pointingViewGlobalFrame: CGRect {
+    public var pointingViewGlobalFrame: CGRect {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
         return pointingView.superview?.convert(pointingView.frame, to: rootView) ?? .zero
     }
@@ -69,7 +69,7 @@ public enum InflectiveTooltipItemType {
     case image
     case actions
     
-    var reuseId: String {
+    public var reuseId: String {
         switch self {
         case .text:
             return String(describing: InflectiveTooltipTextTableViewCell.self)
