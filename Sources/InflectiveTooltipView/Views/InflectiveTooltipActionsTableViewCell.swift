@@ -34,6 +34,8 @@ final class InflectiveTooltipActionsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        backgroundColor = .clear
+        stackView.backgroundColor = .clear
         prepareConstraints()
     }
     
