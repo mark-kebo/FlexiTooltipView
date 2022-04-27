@@ -1,5 +1,5 @@
 # Flexi Tooltip View
-![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) [![Swift Version][swift-image]][swift-url]
+![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) ![Swift Version](swift-image)
 
 Package for custom tooltips in your application
 
@@ -53,32 +53,34 @@ Setup configuration and show tooltip controller:
 import FlexiTooltipView
 
 let tooltipItems: [FlexiTooltipItemProtocol] = [
-                    FlexiTooltipImageItem(image: UIImage(named: "test-image"), imageSize: CGSize(width: 64, height: 64)),
-                    FlexiTooltipTextItem(text: attributtedTitle(text: "Test", weight: .light), image: UIImage(named: "test-image")),
+                    FlexiTooltipImageItem(image: UIImage(named: "test-image"), 
+                                          imageSize: CGSize(width: 64, height: 64)),
+                    FlexiTooltipTextItem(text: attributtedTitle(text: "Test", weight: .light), 
+                                         image: UIImage(named: "test-image")),
                     FlexiTooltipActionsItem(firstAction: FlexiTooltipActionItem(title: attributtedTitle(text: "cancel", weight: .regular),
-                                                                                          backgroundColor: .systemYellow,
-                                                                                          completion: { [weak self] in
-                                                                                              //Some action
-                                                                                          }),
-                                                 secondAction: nil,
-                                                 alignment: .trailing)
+                                                                                backgroundColor: .systemYellow,
+                                                                                completion: { [weak self] in
+                                                                                    //Some action
+                                                                                }),
+                                            secondAction: nil,
+                                            alignment: .trailing)
 ]
 var config = FlexiTooltipConfiguration()
 config.arrowHeight = 16
 config.isNeedShadow = true
 config.isTooltipClosable = true
 config.topAction = FlexiTooltipActionItem(title: attributtedTitle(text: "Close", weight: .regular),
-                                               backgroundColor: .gray) { [weak self] in
+                                          backgroundColor: .gray) { [weak self] in
     //Some top action
 }
 config.highlightedViews = [button1, button]
 let controller = FlexiTooltipViewController(params: FlexiTooltipParams(tooltipItems: tooltipItems,
-                                                                                 pointingView: button,
-                                                                                 configuration: config))
+                                                                       targetView: button,
+                                                                       configuration: config))
 controller.present(in: navigationController)
 
 ```
 ### Important
 
-You must to set `pointingView` in `FlexiTooltipParams`. This is exactly the view to which the tooltip will be attached.
+You must to set `targetView` in `FlexiTooltipParams`. This is exactly the view to which the tooltip will be attached.
 Also if you need highlight some views, you can use `highlightedViews` in `FlexiTooltipConfiguration`.
