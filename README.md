@@ -1,5 +1,5 @@
 # Inflective Tooltip View
- [![Version]][![Swift Version][swift-image]][swift-url][Platform][![License]]
+![Issues](https://img.shields.io/github/issues/mark-kebo/InflectiveTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/InflectiveTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/InflectiveTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/InflectiveTooltipView)
 
 Package for custom tooltips in your application
 
@@ -80,5 +80,5 @@ controller.present(in: navigationController)
 ```
 ### Important
 
-You need to set 'pointingView' in 'InflectiveTooltipParams'. This is exactly the view to which the tooltip will be attached.
-Also if you need highlight some views, you can use 'highlightedViews' in 'InflectiveTooltipConfiguration'.
+You need to set `pointingView` in `InflectiveTooltipParams`. This is exactly the view to which the tooltip will be attached.
+Also if you need highlight some views, you can use `highlightedViews` in `InflectiveTooltipConfiguration`.
