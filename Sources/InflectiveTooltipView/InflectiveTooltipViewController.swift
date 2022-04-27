@@ -137,6 +137,7 @@ final public class InflectiveTooltipViewController: UIViewController {
         widthConstraint = tooltipTableView.widthAnchor.constraint(equalToConstant: dialogViewWidth)
         widthConstraint?.isActive = true
         tooltipTableView.layer.cornerRadius = params.configuration.cornerRadius
+        tooltipTableView.backgroundColor = .clear
     }
     
     private func prepareTopButton() {
