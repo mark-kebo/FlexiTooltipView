@@ -72,7 +72,7 @@ final public class FlexiTooltipViewController: UIViewController {
         view.addSubview(backgroundView)
         view.addSubview(dialogBackgroundView)
         view.addSubview(arrowFrameView)
-        arrowFrameView.addSubview(topActionButton)
+        backgroundView.addSubview(topActionButton)
         view.addSubview(tooltipTableView)
         prepareTableView()
         dialogBackgroundView.alpha = 0
