@@ -1,12 +1,15 @@
 //
+//  InflectiveTooltipView
 //  InflectiveTooltipViewController.swift
-//  
 //
-//  Created by Dmitry Vorozhbicki on 30/03/2022.
+//  Licensed under Apache License 2.0
+//  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
+//  https://github.com/mark-kebo/InflectiveTooltipView
 
 import UIKit
 
+/// Basic tooltip UIViewController to show
 final public class InflectiveTooltipViewController: UIViewController {
     private var screenSize: CGRect { UIScreen.main.bounds }
     private let triangleShape = CAShapeLayer()
@@ -47,6 +50,8 @@ final public class InflectiveTooltipViewController: UIViewController {
     
     private let params: InflectiveTooltipParams
     
+    /// Basic setup init
+    /// - Parameter params: Basic tooltip configuration item
     public init(params: InflectiveTooltipParams) {
         self.params = params
         super.init(nibName: nil, bundle: nil)
@@ -94,6 +99,10 @@ final public class InflectiveTooltipViewController: UIViewController {
         }
     }
     
+    /// Custom presenter for tooltip UIViewController
+    /// - Parameters:
+    ///   - viewController: Parent UIViewController
+    ///   - animated: Presenting animation
     public func present(in viewController: UIViewController?, animated: Bool = true) {
         viewController?.present(self, animated: animated, completion: nil)
     }

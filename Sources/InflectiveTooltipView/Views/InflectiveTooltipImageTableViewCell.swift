@@ -1,12 +1,15 @@
 //
+//  InflectiveTooltipView
 //  InflectiveTooltipImageTableViewCell.swift
-//  
 //
+//  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
+//  https://github.com/mark-kebo/InflectiveTooltipView
 
 import UIKit
 
+/// Custom table view cell to show images with config
 final class InflectiveTooltipImageTableViewCell: UITableViewCell {
     private let tooltipImageView = UIImageView()
     
@@ -16,6 +19,7 @@ final class InflectiveTooltipImageTableViewCell: UITableViewCell {
     private var trailingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     private var imageHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
 
+    /// Data item to configurate cell
     public var viewDataItem: InflectiveTooltipImageItem? {
         didSet {
             fillViews()

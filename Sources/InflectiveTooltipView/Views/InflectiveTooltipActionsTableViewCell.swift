@@ -1,12 +1,15 @@
 //
+//  InflectiveTooltipView
 //  InflectiveTooltipActionsTableViewCell.swift
-//  
 //
+//  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
+//  https://github.com/mark-kebo/InflectiveTooltipView
 
 import UIKit
 
+/// Custom table view cell for actions
 final class InflectiveTooltipActionsTableViewCell: UITableViewCell {
     private let stackView = UIStackView()
     private let firstActionButton = InflectiveTooltipActionButton()
@@ -20,7 +23,8 @@ final class InflectiveTooltipActionsTableViewCell: UITableViewCell {
     private var greaterTrailingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     private var greaterLeadingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     private var centerConstraint: NSLayoutConstraint = NSLayoutConstraint()
-
+    
+    /// Data item to configurate cell
     public var viewDataItem: InflectiveTooltipActionsItem? {
         didSet {
             fillViews()

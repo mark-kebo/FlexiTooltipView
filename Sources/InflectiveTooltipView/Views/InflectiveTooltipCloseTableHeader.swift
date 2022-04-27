@@ -1,16 +1,20 @@
 //
+//  InflectiveTooltipView
 //  InflectiveTooltipCloseTableHeader.swift
-//  
 //
+//  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
+//  https://github.com/mark-kebo/InflectiveTooltipView
 
 import UIKit
 
+/// Delegate to close action
 public protocol InflectiveTooltipCloseTableHeaderDelegate: AnyObject {
     func closeButtonPressed()
 }
 
+/// Custom table view header to add close button to tooltip
 final class InflectiveTooltipCloseTableHeader: UITableViewHeaderFooterView {
     private let headerSize: CGFloat = 32
     private let defaultConstraint: CGFloat = 16
@@ -18,6 +22,7 @@ final class InflectiveTooltipCloseTableHeader: UITableViewHeaderFooterView {
     private let closeSymbol: String = "✕"
     private let closeButton = UIButton()
     
+    /// Delegate to close action
     public weak var delegate: InflectiveTooltipCloseTableHeaderDelegate?
     
     override init(reuseIdentifier: String?) {
