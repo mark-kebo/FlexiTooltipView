@@ -1,19 +1,19 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipActionsTableViewCell.swift
+//  FlexiTooltipView
+//  FlexiTooltipActionsTableViewCell.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Custom table view cell for actions
-final class InflectiveTooltipActionsTableViewCell: UITableViewCell {
+final class FlexiTooltipActionsTableViewCell: UITableViewCell {
     private let stackView = UIStackView()
-    private let firstActionButton = InflectiveTooltipActionButton()
-    private let secondActionButton = InflectiveTooltipActionButton()
+    private let firstActionButton = FlexiTooltipActionButton()
+    private let secondActionButton = FlexiTooltipActionButton()
 
     private let defaultConstraint: CGFloat = 16
     private let buttonHighlightedAlpha: CGFloat = 0.6
@@ -25,7 +25,7 @@ final class InflectiveTooltipActionsTableViewCell: UITableViewCell {
     private var centerConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     /// Data item to configurate cell
-    public var viewDataItem: InflectiveTooltipActionsItem? {
+    public var viewDataItem: FlexiTooltipActionsItem? {
         didSet {
             fillViews()
         }

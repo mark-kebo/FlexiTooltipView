@@ -1,16 +1,16 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipActionButton.swift
+//  FlexiTooltipView
+//  FlexiTooltipActionButton.swift
 //  
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Custom tooltip button
-final class InflectiveTooltipActionButton: UIButton {
+final class FlexiTooltipActionButton: UIButton {
     /// Add background color to button
     /// - Parameters:
     ///   - color: Backgtound color

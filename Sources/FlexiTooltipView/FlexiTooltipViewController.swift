@@ -1,27 +1,27 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipViewController.swift
+//  FlexiTooltipView
+//  FlexiTooltipViewController.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Basic tooltip UIViewController to show
-final public class InflectiveTooltipViewController: UIViewController {
+final public class FlexiTooltipViewController: UIViewController {
     private var screenSize: CGRect { UIScreen.main.bounds }
     private let triangleShape = CAShapeLayer()
     private let showHideAnimationDuration: CGFloat = 0.3
-    private let closeTableHeaderId = String(describing: InflectiveTooltipCloseTableHeader.self)
+    private let closeTableHeaderId = String(describing: FlexiTooltipCloseTableHeader.self)
     private let buttonHighlightedAlpha: CGFloat = 0.6
 
     private let backgroundView = UIView()
     private let dialogBackgroundView = UIView()
     private let tooltipTableView: UITableView = UITableView()
     private let arrowFrameView = UIView()
-    private let topActionButton = InflectiveTooltipActionButton()
+    private let topActionButton = FlexiTooltipActionButton()
     private let keyWindow = UIApplication.shared.keyWindow
     
     private var widthConstraint: NSLayoutConstraint?
@@ -48,11 +48,11 @@ final public class InflectiveTooltipViewController: UIViewController {
         min(params.width, backgroundView.frame.width * 0.7)
     }
     
-    private let params: InflectiveTooltipParams
+    private let params: FlexiTooltipParams
     
     /// Basic setup init
     /// - Parameter params: Basic tooltip configuration item
-    public init(params: InflectiveTooltipParams) {
+    public init(params: FlexiTooltipParams) {
         self.params = params
         super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .overFullScreen
@@ -121,13 +121,13 @@ final public class InflectiveTooltipViewController: UIViewController {
         if #available(iOS 15.0, *) {
             self.tooltipTableView.sectionHeaderTopPadding = 0
         }
-        tooltipTableView.register(InflectiveTooltipTextTableViewCell.self,
-                                  forCellReuseIdentifier: InflectiveTooltipItemType.text.reuseId)
-        tooltipTableView.register(InflectiveTooltipImageTableViewCell.self,
-                                  forCellReuseIdentifier: InflectiveTooltipItemType.image.reuseId)
-        tooltipTableView.register(InflectiveTooltipActionsTableViewCell.self,
-                                  forCellReuseIdentifier: InflectiveTooltipItemType.actions.reuseId)
-        tooltipTableView.register(InflectiveTooltipCloseTableHeader.self,
+        tooltipTableView.register(FlexiTooltipTextTableViewCell.self,
+                                  forCellReuseIdentifier: FlexiTooltipItemType.text.reuseId)
+        tooltipTableView.register(FlexiTooltipImageTableViewCell.self,
+                                  forCellReuseIdentifier: FlexiTooltipItemType.image.reuseId)
+        tooltipTableView.register(FlexiTooltipActionsTableViewCell.self,
+                                  forCellReuseIdentifier: FlexiTooltipItemType.actions.reuseId)
+        tooltipTableView.register(FlexiTooltipCloseTableHeader.self,
                                   forHeaderFooterViewReuseIdentifier: closeTableHeaderId)
         tooltipTableView.delegate = self
         tooltipTableView.dataSource = self
@@ -229,7 +229,7 @@ final public class InflectiveTooltipViewController: UIViewController {
     }
     
     private func getDialogViewOrign(for size: CGSize) -> CGPoint {
-        let globalFrame = params.pointingViewGlobalFrame
+        let globalFrame = params.targetViewGlobalFrame
         var point = CGPoint.zero
         triangleShape.removeFromSuperlayer()
         let path = CGMutablePath()
@@ -301,10 +301,10 @@ final public class InflectiveTooltipViewController: UIViewController {
     }
 }
 
-extension InflectiveTooltipViewController: UITableViewDelegate, UITableViewDataSource {
+extension FlexiTooltipViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard params.configuration.isTooltipClosable else { return nil }
-        let header = tooltipTableView.dequeueReusableHeaderFooterView(withIdentifier: closeTableHeaderId) as? InflectiveTooltipCloseTableHeader
+        let header = tooltipTableView.dequeueReusableHeaderFooterView(withIdentifier: closeTableHeaderId) as? FlexiTooltipCloseTableHeader
         header?.delegate = self
         return header
     }
@@ -322,20 +322,20 @@ extension InflectiveTooltipViewController: UITableViewDelegate, UITableViewDataS
         let cell = tooltipTableView.dequeueReusableCell(withIdentifier: item.type.reuseId) ?? UITableViewCell()
         switch item.type {
         case .text:
-            guard let textTableViewCell = cell as? InflectiveTooltipTextTableViewCell else { return cell }
-            textTableViewCell.viewDataItem = (item as? InflectiveTooltipTextItem)
+            guard let textTableViewCell = cell as? FlexiTooltipTextTableViewCell else { return cell }
+            textTableViewCell.viewDataItem = (item as? FlexiTooltipTextItem)
         case .image:
-            guard let textTableViewCell = cell as? InflectiveTooltipImageTableViewCell else { return cell }
-            textTableViewCell.viewDataItem = (item as? InflectiveTooltipImageItem)
+            guard let textTableViewCell = cell as? FlexiTooltipImageTableViewCell else { return cell }
+            textTableViewCell.viewDataItem = (item as? FlexiTooltipImageItem)
         case .actions:
-            guard let textTableViewCell = cell as? InflectiveTooltipActionsTableViewCell else { return cell }
-            textTableViewCell.viewDataItem = (item as? InflectiveTooltipActionsItem)
+            guard let textTableViewCell = cell as? FlexiTooltipActionsTableViewCell else { return cell }
+            textTableViewCell.viewDataItem = (item as? FlexiTooltipActionsItem)
         }
         return cell
     }
 }
 
-extension InflectiveTooltipViewController: InflectiveTooltipCloseTableHeaderDelegate {
+extension FlexiTooltipViewController: FlexiTooltipCloseTableHeaderDelegate {
     public func closeButtonPressed() {
         dismiss(animated: true, completion: nil)
     }

@@ -1,16 +1,16 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipImageTableViewCell.swift
+//  FlexiTooltipView
+//  FlexiTooltipImageTableViewCell.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Custom table view cell to show images with config
-final class InflectiveTooltipImageTableViewCell: UITableViewCell {
+final class FlexiTooltipImageTableViewCell: UITableViewCell {
     private let tooltipImageView = UIImageView()
     
     private let defaultConstraint: CGFloat = 16
@@ -20,7 +20,7 @@ final class InflectiveTooltipImageTableViewCell: UITableViewCell {
     private var imageHeightConstraint: NSLayoutConstraint = NSLayoutConstraint()
 
     /// Data item to configurate cell
-    public var viewDataItem: InflectiveTooltipImageItem? {
+    public var viewDataItem: FlexiTooltipImageItem? {
         didSet {
             fillViews()
         }

@@ -1,16 +1,16 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipTextTableViewCell.swift
+//  FlexiTooltipView
+//  FlexiTooltipTextTableViewCell.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Custom table view cell to show attributed text with image
-final class InflectiveTooltipTextTableViewCell: UITableViewCell {
+final class FlexiTooltipTextTableViewCell: UITableViewCell {
     private let stackView = UIStackView()
     private let tooltipImageView = UIImageView()
     private let tooltipTextLabel = UILabel()
@@ -22,7 +22,7 @@ final class InflectiveTooltipTextTableViewCell: UITableViewCell {
     private var imageWidthConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     /// Data item to configurate cell
-    public var viewDataItem: InflectiveTooltipTextItem? {
+    public var viewDataItem: FlexiTooltipTextItem? {
         didSet {
             fillViews()
         }

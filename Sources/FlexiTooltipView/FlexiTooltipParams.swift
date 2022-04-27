@@ -1,16 +1,16 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipParams.swift
+//  FlexiTooltipView
+//  FlexiTooltipParams.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Basic tooltip configuration item
-public struct InflectiveTooltipConfiguration {
+public struct FlexiTooltipConfiguration {
     ///Tooltip background color
     public var backgroundColor: UIColor
     
@@ -36,7 +36,7 @@ public struct InflectiveTooltipConfiguration {
     public var highlightedViews: [UIView]
     
     /// Action item for top global button if needed
-    public var topAction: InflectiveTooltipActionItem?
+    public var topAction: FlexiTooltipActionItem?
     
     /// Default init
     public init() {
@@ -52,20 +52,20 @@ public struct InflectiveTooltipConfiguration {
 }
 
 /// Tooltip params for configuration
-public struct InflectiveTooltipParams {
+public struct FlexiTooltipParams {
     /// All tooltip basic view data items
-    public let tooltipItems: [InflectiveTooltipItemProtocol]
+    public let tooltipItems: [FlexiTooltipItemProtocol]
     
     /// UIView to which the tooltip will be attached
-    public let pointingView: UIView
+    public let targetView: UIView
     
     /// Basic tooltip configuration item
-    public let configuration: InflectiveTooltipConfiguration
+    public let configuration: FlexiTooltipConfiguration
     
     /// Global frame of UIView to which the tooltip will be attached
-    public var pointingViewGlobalFrame: CGRect {
+    public var targetViewGlobalFrame: CGRect {
         let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
-        return pointingView.superview?.convert(pointingView.frame, to: rootView) ?? .zero
+        return targetView.superview?.convert(targetView.frame, to: rootView) ?? .zero
     }
     
     /// Tooltip width
@@ -82,28 +82,28 @@ public struct InflectiveTooltipParams {
     /// Basic setup init
     /// - Parameters:
     ///   - tooltipItems: All tooltip basic view data items
-    ///   - pointingView: UIView to which the tooltip will be attached
+    ///   - targetView: UIView to which the tooltip will be attached
     ///   - configuration: Basic tooltip configuration item
-    public init(tooltipItems: [InflectiveTooltipItemProtocol],
+    public init(tooltipItems: [FlexiTooltipItemProtocol],
                 pointingView: UIView,
-                configuration: InflectiveTooltipConfiguration? = nil) {
+                configuration: FlexiTooltipConfiguration? = nil) {
         self.tooltipItems = tooltipItems
-        self.pointingView = pointingView
-        self.configuration = configuration ?? InflectiveTooltipConfiguration()
+        self.targetView = pointingView
+        self.configuration = configuration ?? FlexiTooltipConfiguration()
     }
 }
 
 /// Interface of tooltip view data item
-public protocol InflectiveTooltipItemProtocol {
+public protocol FlexiTooltipItemProtocol {
     /// Type of tooltip item
-    var type: InflectiveTooltipItemType { get }
+    var type: FlexiTooltipItemType { get }
     
     /// Cell content width
     var contentWidth: CGFloat { get }
 }
 
 /// Type of tooltip item
-public enum InflectiveTooltipItemType {
+public enum FlexiTooltipItemType {
     /// Item for attributted text with image
     case text
     
@@ -117,19 +117,19 @@ public enum InflectiveTooltipItemType {
     public var reuseId: String {
         switch self {
         case .text:
-            return String(describing: InflectiveTooltipTextTableViewCell.self)
+            return String(describing: FlexiTooltipTextTableViewCell.self)
         case .image:
-            return String(describing: InflectiveTooltipImageTableViewCell.self)
+            return String(describing: FlexiTooltipImageTableViewCell.self)
         case .actions:
-            return String(describing: InflectiveTooltipActionsTableViewCell.self)
+            return String(describing: FlexiTooltipActionsTableViewCell.self)
         }
     }
 }
 
 /// Item for attributted text with image
-public struct InflectiveTooltipTextItem: InflectiveTooltipItemProtocol {
+public struct FlexiTooltipTextItem: FlexiTooltipItemProtocol {
     /// Type of tooltip item
-    public var type: InflectiveTooltipItemType { .text }
+    public var type: FlexiTooltipItemType { .text }
     
     /// Attributed text
     public let text: NSAttributedString
@@ -170,9 +170,9 @@ public struct InflectiveTooltipTextItem: InflectiveTooltipItemProtocol {
 }
 
 /// Item for custom image
-public struct InflectiveTooltipImageItem: InflectiveTooltipItemProtocol {
+public struct FlexiTooltipImageItem: FlexiTooltipItemProtocol {
     /// Type of tooltip item
-    public var type: InflectiveTooltipItemType { .image }
+    public var type: FlexiTooltipItemType { .image }
     
     /// Image if needed
     public let image: UIImage?
@@ -203,18 +203,18 @@ public struct InflectiveTooltipImageItem: InflectiveTooltipItemProtocol {
 }
 
 /// Item for custom actions
-public struct InflectiveTooltipActionsItem: InflectiveTooltipItemProtocol {
+public struct FlexiTooltipActionsItem: FlexiTooltipItemProtocol {
     /// Type of tooltip item
-    public var type: InflectiveTooltipItemType { .actions }
+    public var type: FlexiTooltipItemType { .actions }
     
     /// View data item for first action
-    public let firstAction: InflectiveTooltipActionItem
+    public let firstAction: FlexiTooltipActionItem
     
     /// View data item for second action
-    public let secondAction: InflectiveTooltipActionItem?
+    public let secondAction: FlexiTooltipActionItem?
     
     /// Actions alignment
-    public let alignment: InflectiveTooltipActionsAlignment
+    public let alignment: FlexiTooltipActionsAlignment
     
     /// Content spacing if needed
     public let spacing: CGFloat
@@ -234,9 +234,9 @@ public struct InflectiveTooltipActionsItem: InflectiveTooltipItemProtocol {
     ///   - secondAction: View data item for second action
     ///   - alignment: Actions alignment
     ///   - spacing: Content spacing if needed
-    public init(firstAction: InflectiveTooltipActionItem,
-                secondAction: InflectiveTooltipActionItem?,
-                alignment: InflectiveTooltipActionsAlignment,
+    public init(firstAction: FlexiTooltipActionItem,
+                secondAction: FlexiTooltipActionItem?,
+                alignment: FlexiTooltipActionsAlignment,
                 spacing: CGFloat = 16) {
         self.firstAction = firstAction
         self.secondAction = secondAction
@@ -246,7 +246,7 @@ public struct InflectiveTooltipActionsItem: InflectiveTooltipItemProtocol {
 }
 
 /// Actions alignment
-public enum InflectiveTooltipActionsAlignment {
+public enum FlexiTooltipActionsAlignment {
     /// Left alignment
     case leading
     
@@ -258,7 +258,7 @@ public enum InflectiveTooltipActionsAlignment {
 }
 
 /// Tooltip action item
-public struct InflectiveTooltipActionItem {
+public struct FlexiTooltipActionItem {
     /// Attributed title
     public let title: NSAttributedString
     

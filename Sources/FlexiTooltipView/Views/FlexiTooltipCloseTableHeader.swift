@@ -1,21 +1,21 @@
 //
-//  InflectiveTooltipView
-//  InflectiveTooltipCloseTableHeader.swift
+//  FlexiTooltipView
+//  FlexiTooltipCloseTableHeader.swift
 //
 //  Licensed under Apache License 2.0
 //  Created by Dmitry Vorozhbicki on 14/04/2022.
 //
-//  https://github.com/mark-kebo/InflectiveTooltipView
+//  https://github.com/mark-kebo/FlexiTooltipView
 
 import UIKit
 
 /// Delegate to close action
-public protocol InflectiveTooltipCloseTableHeaderDelegate: AnyObject {
+public protocol FlexiTooltipCloseTableHeaderDelegate: AnyObject {
     func closeButtonPressed()
 }
 
 /// Custom table view header to add close button to tooltip
-final class InflectiveTooltipCloseTableHeader: UITableViewHeaderFooterView {
+final class FlexiTooltipCloseTableHeader: UITableViewHeaderFooterView {
     private let headerSize: CGFloat = 32
     private let defaultConstraint: CGFloat = 16
     private let buttonInset: CGFloat = 8
@@ -23,7 +23,7 @@ final class InflectiveTooltipCloseTableHeader: UITableViewHeaderFooterView {
     private let closeButton = UIButton()
     
     /// Delegate to close action
-    public weak var delegate: InflectiveTooltipCloseTableHeaderDelegate?
+    public weak var delegate: FlexiTooltipCloseTableHeaderDelegate?
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
