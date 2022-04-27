@@ -70,9 +70,9 @@ final public class FlexiTooltipViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(backgroundView)
+        arrowFrameView.addSubview(topActionButton)
         view.addSubview(dialogBackgroundView)
         view.addSubview(arrowFrameView)
-        backgroundView.addSubview(topActionButton)
         view.addSubview(tooltipTableView)
         prepareTableView()
         dialogBackgroundView.alpha = 0
@@ -137,7 +137,7 @@ final public class FlexiTooltipViewController: UIViewController {
         widthConstraint = tooltipTableView.widthAnchor.constraint(equalToConstant: dialogViewWidth)
         widthConstraint?.isActive = true
         tooltipTableView.layer.cornerRadius = params.configuration.cornerRadius
-        tooltipTableView.backgroundColor = .clear
+        tooltipTableView.backgroundColor = params.configuration.backgroundColor
     }
     
     private func prepareTopButton() {

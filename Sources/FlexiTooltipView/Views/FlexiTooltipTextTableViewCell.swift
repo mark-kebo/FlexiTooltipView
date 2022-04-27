@@ -70,11 +70,23 @@ final class FlexiTooltipTextTableViewCell: UITableViewCell {
         prepareViews()
         tooltipTextLabel.attributedText = viewDataItem?.text
         let spacing = viewDataItem?.spacing ?? 0
+        let imageSize = viewDataItem?.imageSize ?? 0
         stackView.spacing = spacing
         leadingConstraint.constant = spacing
         trailingConstraint.constant = -spacing
         imageWidthConstraint.constant = viewDataItem?.imageSize ?? 0
         tooltipImageView.isHidden = viewDataItem?.image == nil
-        tooltipImageView.image = viewDataItem?.image
+        tooltipImageView.image = viewDataItem?.image?.resized(to: CGSize(width: imageSize,
+                                                                         height: imageSize))
     }
 }
+
+fileprivate extension UIImage {
+    func resized(to newSize: CGSize) -> UIImage? {
+      UIGraphicsBeginImageContextWithOptions(newSize, false, 0)
+      defer { UIGraphicsEndImageContext() }
+
+      draw(in: CGRect(origin: .zero, size: newSize))
+      return UIGraphicsGetImageFromCurrentImageContext()
+    }
+  }
