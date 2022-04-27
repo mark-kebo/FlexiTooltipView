@@ -1,5 +1,5 @@
 # Flexi Tooltip View
-![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) ![Swift Version](swift-image)
+![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) 
 
 Package for custom tooltips in your application
 
