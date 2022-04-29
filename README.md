@@ -3,7 +3,7 @@
 
 Package for custom tooltips in your application
 
-![Example3](_Images/Example3.png =250x444) ![Example4](_Images/Example4.png =250x444) ![Example5](_Images/Example5.png =250x444)
+![Example3](_Images/Example3.png | width=250) ![Example4](_Images/Example4.png =250x444) ![Example5](_Images/Example5.png =250x444)
 
 ## Installing
 Flexi Tooltip View support [Swift Package Manager](https://www.swift.org/package-manager/).
