@@ -73,6 +73,13 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
         leadingConstraint.constant = spacing
         trailingConstraint.constant = -spacing
         firstActionButton.setAttributedTitle(viewDataItem?.firstAction.title, for: .normal)
+        if let selectedFirstAction = viewDataItem?.firstAction {
+            let mutableAttributedString = NSMutableAttributedString(attributedString: selectedFirstAction.title)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor,
+                                                 value: UIColor.lightGray,
+                                                 range: NSMakeRange(0, selectedFirstAction.title.length))
+            firstActionButton.setAttributedTitle(mutableAttributedString, for: .highlighted)
+        }
         firstActionButton.setBackgroundColor(color: viewDataItem?.firstAction.backgroundColor, forState: .normal)
         firstActionButton.setBackgroundColor(color: viewDataItem?.firstAction.backgroundColor.withAlphaComponent(buttonHighlightedAlpha),
                                              forState: .highlighted)
@@ -81,6 +88,13 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
         firstActionButton.clipsToBounds = true
         firstActionButton.addTarget(self, action: #selector(firstButtonAction(_:)), for: .touchUpInside)
         secondActionButton.setAttributedTitle(viewDataItem?.secondAction?.title, for: .normal)
+        if let selectedSecondAction = viewDataItem?.secondAction {
+            let mutableAttributedString = NSMutableAttributedString(attributedString: selectedSecondAction.title)
+            mutableAttributedString.addAttribute(NSAttributedString.Key.foregroundColor,
+                                                 value: UIColor.lightGray,
+                                                 range: NSMakeRange(0, selectedSecondAction.title.length))
+            secondActionButton.setAttributedTitle(mutableAttributedString, for: .highlighted)
+        }
         secondActionButton.setBackgroundColor(color: viewDataItem?.secondAction?.backgroundColor, forState: .normal)
         secondActionButton.setBackgroundColor(color: viewDataItem?.secondAction?.backgroundColor.withAlphaComponent(buttonHighlightedAlpha),
                                               forState: .highlighted)
@@ -89,6 +103,13 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
         secondActionButton.clipsToBounds = true
         secondActionButton.isHidden = viewDataItem?.secondAction == nil
         secondActionButton.addTarget(self, action: #selector(secondButtonAction(_:)), for: .touchUpInside)
+        guard (viewDataItem?.contentWidth ?? 0) < self.frame.width else {
+            let additionalButtonSpacing = spacing * 1.5
+            let firstActionWidthConstraint = firstActionButton.widthAnchor.constraint(equalToConstant: self.frame.width / 2 - additionalButtonSpacing)
+            let secondActionWidthConstraint = secondActionButton.widthAnchor.constraint(equalToConstant: self.frame.width / 2 - additionalButtonSpacing)
+            NSLayoutConstraint.activate([ firstActionWidthConstraint, secondActionWidthConstraint ])
+            return
+        }
         switch viewDataItem?.alignment {
         case .trailing:
             greaterTrailingConstraint.priority = .defaultLow
