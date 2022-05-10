@@ -23,6 +23,8 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
     private var greaterTrailingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     private var greaterLeadingConstraint: NSLayoutConstraint = NSLayoutConstraint()
     private var centerConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    private var firstActionWidthConstraint: NSLayoutConstraint = NSLayoutConstraint()
+    private var secondActionWidthConstraint: NSLayoutConstraint = NSLayoutConstraint()
     
     /// Data item to configurate cell
     public var viewDataItem: FlexiTooltipActionsItem? {
@@ -49,6 +51,8 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
         leadingConstraint = stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -defaultConstraint)
         trailingConstraint = stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: defaultConstraint)
         centerConstraint = stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+        firstActionWidthConstraint = firstActionButton.widthAnchor.constraint(equalToConstant: 0)
+        secondActionWidthConstraint = secondActionButton.widthAnchor.constraint(equalToConstant: 0)
         let bottomConstraint = stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -defaultConstraint)
         let topConstraint = stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: defaultConstraint)
         contentView.addSubview(stackView)
@@ -69,6 +73,7 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
     private func fillViews() {
         prepareViews()
         let spacing = viewDataItem?.spacing ?? 0
+        let additionalButtonSpacing = spacing * 1.5
         stackView.spacing = spacing
         leadingConstraint.constant = spacing
         trailingConstraint.constant = -spacing
@@ -104,9 +109,8 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
         secondActionButton.isHidden = viewDataItem?.secondAction == nil
         secondActionButton.addTarget(self, action: #selector(secondButtonAction(_:)), for: .touchUpInside)
         guard (viewDataItem?.contentWidth ?? 0) < self.frame.width else {
-            let additionalButtonSpacing = spacing * 1.5
-            let firstActionWidthConstraint = firstActionButton.widthAnchor.constraint(equalToConstant: self.frame.width / 2 - additionalButtonSpacing)
-            let secondActionWidthConstraint = secondActionButton.widthAnchor.constraint(equalToConstant: self.frame.width / 2 - additionalButtonSpacing)
+            firstActionWidthConstraint.constant = self.frame.width / 2 - additionalButtonSpacing
+            secondActionWidthConstraint.constant = self.frame.width / 2 - additionalButtonSpacing
             NSLayoutConstraint.activate([ firstActionWidthConstraint, secondActionWidthConstraint ])
             return
         }
@@ -116,19 +120,19 @@ final class FlexiTooltipActionsTableViewCell: UITableViewCell {
             greaterLeadingConstraint.priority = defaultConstraintPriority
             leadingConstraint.priority = .defaultLow
             trailingConstraint.priority = defaultConstraintPriority
-            NSLayoutConstraint.deactivate([ centerConstraint ])
+            NSLayoutConstraint.deactivate([ centerConstraint, firstActionWidthConstraint, secondActionWidthConstraint ])
         case .leading:
             greaterTrailingConstraint.priority = defaultConstraintPriority
             greaterLeadingConstraint.priority = .defaultLow
             leadingConstraint.priority = defaultConstraintPriority
             trailingConstraint.priority = .defaultLow
-            NSLayoutConstraint.deactivate([ centerConstraint ])
+            NSLayoutConstraint.deactivate([ centerConstraint, firstActionWidthConstraint, secondActionWidthConstraint ])
         case .center:
             greaterTrailingConstraint.priority = defaultConstraintPriority
             greaterLeadingConstraint.priority = defaultConstraintPriority
             leadingConstraint.priority = .defaultLow
             trailingConstraint.priority = .defaultLow
-            NSLayoutConstraint.activate([ centerConstraint ])
+            NSLayoutConstraint.activate([ centerConstraint, firstActionWidthConstraint, secondActionWidthConstraint ])
         default:
             break
         }
