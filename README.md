@@ -1,5 +1,5 @@
 # Flexi Tooltip View
-![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) 
+[![Swift Version][swift-image]][swift-url] ![Issues](https://img.shields.io/github/issues/mark-kebo/FlexiTooltipView) ![Forks](https://img.shields.io/github/forks/mark-kebo/FlexiTooltipView) ![Stars](https://img.shields.io/github/stars/mark-kebo/FlexiTooltipView) ![License](https://img.shields.io/github/license/mark-kebo/FlexiTooltipView) 
 
 Package for custom tooltips in your application
 
@@ -83,3 +83,6 @@ controller.present(in: navigationController)
 
 You must to set `targetView` in `FlexiTooltipParams`. This is exactly the view to which the tooltip will be attached.
 Also if you need highlight some views, you can use `highlightedViews` in `FlexiTooltipConfiguration`.
+
+[swift-image]:https://img.shields.io/badge/swift-5.0-orange.svg
+[swift-url]: https://swift.org/
