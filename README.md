@@ -74,14 +74,14 @@ config.topAction = FlexiTooltipActionItem(title: attributtedTitle(text: "Close",
 }
 config.highlightedViews = [button1, button]
 let controller = FlexiTooltipViewController(params: FlexiTooltipParams(tooltipItems: tooltipItems,
-                                                                       targetView: button,
+                                                                       pointingView: button,
                                                                        configuration: config))
 controller.present(in: navigationController)
 
 ```
 ### Important
 
-You must to set `targetView` in `FlexiTooltipParams`. This is exactly the view to which the tooltip will be attached.
+You must to set `pointingView` or pointing `viewRect` in `FlexiTooltipParams`. This is exactly the view to which the tooltip will be attached.
 Also if you need highlight some views, you can use `highlightedViews` in `FlexiTooltipConfiguration`.
 
 [swift-image]:https://img.shields.io/badge/swift-5.0-orange.svg
