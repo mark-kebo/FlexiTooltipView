@@ -38,6 +38,12 @@ public struct FlexiTooltipConfiguration {
     /// Action item for top global button if needed
     public var topAction: FlexiTooltipActionItem?
     
+    /// Is user can close tooltip by background tap
+    public var isBackgroundTapClosable: Bool
+    
+    /// View show/hide animation duration
+    public var showHideAnimationDuration: CGFloat
+    
     /// Default init
     public init() {
         backgroundColor = .white
@@ -48,6 +54,8 @@ public struct FlexiTooltipConfiguration {
         tooltipViewInset = 16
         isTooltipClosable = false
         highlightedViews = []
+        isBackgroundTapClosable = false
+        showHideAnimationDuration = 0.3
     }
 }
 
@@ -57,15 +65,21 @@ public struct FlexiTooltipParams {
     public let tooltipItems: [FlexiTooltipItemProtocol]
     
     /// UIView to which the tooltip will be attached
-    public let targetView: UIView
+    public let targetView: UIView?
+    
+    /// UIView center
+    public let viewRect: CGRect?
     
     /// Basic tooltip configuration item
     public let configuration: FlexiTooltipConfiguration
     
     /// Global frame of UIView to which the tooltip will be attached
     public var targetViewGlobalFrame: CGRect {
-        let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
-        return targetView.superview?.convert(targetView.frame, to: rootView) ?? .zero
+        guard let viewRect else {
+            let rootView = UIApplication.shared.keyWindow?.rootViewController?.view
+            return targetView?.superview?.convert(targetView?.frame ?? CGRect.zero, to: rootView) ?? .zero
+        }
+        return viewRect
     }
     
     /// Tooltip width
@@ -82,13 +96,28 @@ public struct FlexiTooltipParams {
     /// Basic setup init
     /// - Parameters:
     ///   - tooltipItems: All tooltip basic view data items
-    ///   - targetView: UIView to which the tooltip will be attached
+    ///   - pointingView: UIView to which the tooltip will be attached
     ///   - configuration: Basic tooltip configuration item
     public init(tooltipItems: [FlexiTooltipItemProtocol],
-                pointingView: UIView,
+                pointingView: UIView?,
                 configuration: FlexiTooltipConfiguration? = nil) {
         self.tooltipItems = tooltipItems
         self.targetView = pointingView
+        self.viewRect = nil
+        self.configuration = configuration ?? FlexiTooltipConfiguration()
+    }
+    
+    /// Basic setup init
+    /// - Parameters:
+    ///   - tooltipItems: All tooltip basic view data items
+    ///   - viewRect: UIView center
+    ///   - configuration: Basic tooltip configuration item
+    public init(tooltipItems: [FlexiTooltipItemProtocol],
+                viewRect: CGRect?,
+                configuration: FlexiTooltipConfiguration? = nil) {
+        self.tooltipItems = tooltipItems
+        self.targetView = nil
+        self.viewRect = viewRect
         self.configuration = configuration ?? FlexiTooltipConfiguration()
     }
 }
