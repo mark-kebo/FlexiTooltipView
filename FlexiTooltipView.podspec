@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'FlexiTooltipView'
-  s.version          = '1.0.1'
+  s.version          = '1.0.2'
   s.summary          = 'Package for custom tooltips in your application'
   s.homepage = "https://github.com/mark-kebo/FlexiTooltipView"
   s.license = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
