@@ -1,0 +1,6 @@
+use_frameworks!
+target 'FlexiTooltipView_Tests' do
+  pod 'FlexiTooltipView', :path => '../'
+  
+  
+end
