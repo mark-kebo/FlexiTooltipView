@@ -20,7 +20,8 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "FlexiTooltipView",
-            dependencies: []),
+            dependencies: [],
+            exclude: ["_Images", "Example", "FlexiTooltipView.podspec"]),
         .testTarget(
             name: "FlexiTooltipViewTests",
             dependencies: ["FlexiTooltipView"]),
